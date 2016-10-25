@@ -12,7 +12,6 @@ gem 'bootstrap-sass', 	'3.3.7'
 gem 'simple_form',		'3.3.1'
 
 group :development, :test do
-
   gem 'byebug',  '9.0.0', platform: :mri
 end
 
