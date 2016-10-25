@@ -12,7 +12,7 @@ gem 'bootstrap-sass', 	'3.3.7'
 gem 'simple_form',		'3.3.1'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.11'
+
   gem 'byebug',  '9.0.0', platform: :mri
 end
 
@@ -24,7 +24,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg', '0.18.4'
+  gem 'pg'
 end
 
 
