@@ -17,9 +17,15 @@
       </div>
       <div>
        <ul class="navbar-text navbar-right">
-           
+            <% if user_signed_in? %>
   							<%= link_to "New Post", new_post_path, class: "btn btn-default" %>
-  					
+  							<%= link_to 'Account', edit_user_registration_path, class: "btn btn-default" %>
+  							<%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class: "btn btn-default"%>
+  					<% else -%>
+  							<%= link_to 'Sign up', new_user_registration_path, class: "btn btn-default" %>
+  							<%= link_to 'Sign in', new_user_session_path, class: "btn btn-default" %>
+  					<% end -%>
+        </ul> 
       </div>
 
     </div>
@@ -28,6 +34,10 @@
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: "alert" %>
     <% end %>
+
+ <!--   <p class="notice"><%= notice %></p> 
+        <p class="alert"><%= alert %></p> -->
+
 
     <%= yield %>
 
