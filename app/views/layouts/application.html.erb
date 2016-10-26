@@ -31,13 +31,18 @@
     </div>
   </nav>
   <div class="container">
-    <% flash.each do |name, msg| %>
+   	<% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: "alert" %>
     <% end %>
 
  <!--   <p class="notice"><%= notice %></p> 
         <p class="alert"><%= alert %></p> -->
 
+        <div>
+        	<% Category.all.each do |category| %>
+        	<%= link_to category.name, posts_path(category: category.name) %>
+        	<% end %>
+        </div>
 
     <%= yield %>
 

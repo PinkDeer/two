@@ -2,9 +2,13 @@ class PostsController < ApplicationController
 	before_action :find_post, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, except: [:index, :show]
 
-
 	def index
-		@post = Post.all.order("created_at DESC")
+		if params[:category].blank?
+			@posts = Post.all.order("created_at DESC")
+		else
+			@category_id = Category.find_by(name: params[:category]).id
+			@posts = Post.where(category_id: @category_id).order("created_at DESC")
+		end
 	end
 
 	def new
@@ -25,7 +29,7 @@ class PostsController < ApplicationController
 
   	def update
 	    if @post.update(post_params)
-	      redirect_to @post
+	      redirect_to root_path
 	    else
 	      render 'edit'
 	    end
@@ -45,7 +49,7 @@ class PostsController < ApplicationController
 	end
 
 	def post_params
-		params.require(:post).permit(:title, :content, :image)
+		params.require(:post).permit(:title, :content, :image, :category_id)
 	end
 
 end
