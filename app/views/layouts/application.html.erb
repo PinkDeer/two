@@ -9,6 +9,28 @@
   </head>
 
   <body>
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-brand">
+        <%= link_to "All Posts", root_path, class: "btn btn-primary" %>
+      </div>
+      <div>
+       <ul class="navbar-text navbar-right">
+           
+  							<%= link_to "New Post", new_post_path, class: "btn btn-default" %>
+  					
+      </div>
+
+    </div>
+  </nav>
+  <div class="container">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: "alert" %>
+    <% end %>
+
     <%= yield %>
-  </body>
+
+  </div>
+</body>
 </html>

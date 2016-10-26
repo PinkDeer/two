@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	before_action :find_post, only: [:show]
+	before_action :find_post, only: [:show, :edit, :update, :destroy]
 
 	def index
 		@post = Post.all.order("created_at DESC")
@@ -12,11 +12,27 @@ class PostsController < ApplicationController
 	def create
 		@post = Post.new(post_params)
 		if @post.save
-			redirect_to @post
+			redirect_to root_path
 		else
 			render 'new'
 		end
   	end
+
+  	def edit
+  	end
+
+  	def update
+	    if @post.update(post_params)
+	      redirect_to @post
+	    else
+	      render 'edit'
+	    end
+	end
+
+	def destroy
+    	@post.destroy
+    	redirect_to root_path, notice: "Successfully deleted post"
+	end
 
 
 	private
@@ -27,7 +43,7 @@ class PostsController < ApplicationController
 	end
 
 	def post_params
-		params.require(:post).permit(:title, :content)
+		params.require(:post).permit(:title, :content, :image)
 	end
 
 end
