@@ -4,7 +4,8 @@
   <%= link_to post do %>
   	<%= image_tag post.image.url(:medium) %>
   <% end %>
-  <p>Published at <%= post.created_at.strftime('%b %d, %Y') %></p>
+  <p>Published at <%= post.created_at.strftime('%b %d, %Y') %>
+  by <%= post.user.email %></p>
   <p> <%= truncate(post.content, length:100) %> </p>
 
 <% end %>
